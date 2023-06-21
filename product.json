@@ -1,0 +1,99 @@
+[
+  {
+    "model": "Product.category",
+    "pk": 1,
+    "fields": {
+      "name": "фрукты",
+      "description": "свежие"
+    }
+  },
+  {
+    "model": "Product.category",
+    "pk": 2,
+    "fields": {
+      "name": "овощи",
+      "description": ""
+    }
+  },
+  {
+    "model": "Product.category",
+    "pk": 3,
+    "fields": {
+      "name": "ягоды",
+      "description": ""
+    }
+  },
+  {
+    "model": "Product.category",
+    "pk": 4,
+    "fields": {
+      "name": "мясо",
+      "description": ""
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 2,
+    "fields": {
+      "name": "банан",
+      "description": "мятый",
+      "imag": "",
+      "category": 1,
+      "purchase_price": 100,
+      "date_of_creation": "2023-06-21",
+      "last_modified_date": "2023-06-21"
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 3,
+    "fields": {
+      "name": "помидор",
+      "description": "",
+      "imag": "",
+      "category": 2,
+      "purchase_price": 50,
+      "date_of_creation": "2023-06-21",
+      "last_modified_date": "2023-06-21"
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 4,
+    "fields": {
+      "name": "орех",
+      "description": "",
+      "imag": "",
+      "category": 3,
+      "purchase_price": 50,
+      "date_of_creation": "2023-06-21",
+      "last_modified_date": "2023-06-21"
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 5,
+    "fields": {
+      "name": "баранина",
+      "description": "",
+      "imag": "",
+      "category": 4,
+      "purchase_price": 50,
+      "date_of_creation": "2023-06-21",
+      "last_modified_date": "2023-06-21"
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 6,
+    "fields": {
+      "name": "курица",
+      "description": "",
+      "imag": "",
+      "category": 4,
+      "purchase_price": 50,
+      "date_of_creation": "2023-06-21",
+      "last_modified_date": "2023-06-21"
+    }
+  }
+]
