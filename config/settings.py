@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    "main.Product",#main.Category
+    "main.Product"
 ]
 
 MIDDLEWARE = [
@@ -78,6 +78,7 @@ DATABASES = {
         'NAME': "project5",
         "USER": "postgres",
         "HOST": "127.0.0.1",
+        "PASSWORD": '123',
         'PORT': 5432
     }
 }
@@ -114,7 +115,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
