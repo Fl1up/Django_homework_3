@@ -3,7 +3,7 @@
     "model": "Product.category",
     "pk": 1,
     "fields": {
-      "name": "фрукты",
+      "name": "рукты",
       "description": "свежие"
     }
   },

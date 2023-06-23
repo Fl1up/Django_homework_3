@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    {% for product in product %}
+        <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">{{ product.name|title }}</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{ product.purchase_price }}<small class="text-body-secondary fw-light">/руб</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    Категория: {{ product.category|title }}<br>
+                    Дата создания: {{ product.date_of_creation|title }}<br>
+                    Дата последнего изменения: {{ product.last_modified_date|title }}
+
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Купить</button>
+            </div>
+        </div>
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="col-12 col-md">
+        </div>
+    {% endfor %}
+{% endblock %}

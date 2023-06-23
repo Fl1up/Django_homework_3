@@ -1,19 +1,29 @@
+
 from django.shortcuts import render
 from main.Product.models import Products
 
 
-def contacts(request):
+def product(request):
     product_list = Products.objects.all()
     context = {
-        'product': product_list
+        'product': product_list,
+        "title": "Главная",
     }
-    return render(request, "main/base.html", context)
+    return render(request, "main/product.html", context)
 
-# def contacts(request):
-#     if request.method == "POST":
-#         firstname = request.POST.get("firstName")
-#         lastname = request.POST.get("lastName")
-#         username = request.POST.get("username")
-#         email = request.POST.get("email")
-#         print(f"{firstname}, {lastname}:{username},{email}")
-#     return render(request, "main/base.html")
+
+def contact(request):
+    context = {
+        "title": "Контакты",
+    }
+    return render(request, "main/contact.html", context)
+
+
+def catalog(request):
+    product_list = Products.objects.all()
+    context = {
+        'product': product_list,
+        "title": "Главная",
+    }
+    return render(request, "main/catalog.html", context)
+
