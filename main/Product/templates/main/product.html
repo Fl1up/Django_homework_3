@@ -7,8 +7,8 @@
                     <svg class="bd-placeholder-img card-img-top" width="50%" height="225">
 
                     <rect width="1000%" height="100%" fill="#55595c"/>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ product.name|title }}</text>
-                    <p class="card-text"></p>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
+                    <p class="card-text">{{ product.name|title }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
 
@@ -16,7 +16,7 @@
                                     href="{% url 'main:catalog' %}" class="text-black">Информация</a></
                             >
 
-                            <button type="button" class="btn btn-sm btn-outline-secondary" href="">Перейти на страницу</
+                            <button type="button" class="btn btn-sm btn-outline-secondary" href="">Купить</
                             </button>
 
                         </div>
