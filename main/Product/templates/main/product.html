@@ -1,22 +1,22 @@
 {% extends 'main/base.html' %}
+
 {% block content %}
-    {% for product in product %}
+    {% for object in product %}
         <div class="col-md-4">
             <div class="card mb-4 box-shadow">
                 <div class="card-body">
-                    <svg class="bd-placeholder-img card-img-top" width="50%" height="225">
-
+                    {% load mediapath %}
+                    <img src="{% mediapath object.image %}" />
                     <rect width="1000%" height="100%" fill="#55595c"/>
                     <text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
-                    <p class="card-text">{{ product.name|title }}</p>
+                    <p class="card-text">{{ object.name|title|truncatechars:100 }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
 
                             <button type="button" class="btn btn-sm btn-outline-secondary"><a
-                                    href="{% url 'main:catalog' %}" class="text-black">Информация</a></
-                            >
+                                    href="{% url 'main:catalog' %}" class="text-black">Информация</a></button>
 
-                            <button type="button" class="btn btn-sm btn-outline-secondary" href="">Купить</
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="">Купить</a>
                             </button>
 
                         </div>
