@@ -5,7 +5,7 @@ from django import forms
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'purchase_price', 'category')
+    list_display = ('id', 'name', 'purchase_price', 'category','image')
     list_filter = ('category',)
     search_fields = ('name', 'description')
 

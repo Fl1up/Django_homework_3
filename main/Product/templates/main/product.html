@@ -4,10 +4,10 @@
     {% for object in product %}
         <div class="col-md-4">
             <div class="card mb-4 box-shadow">
-                <div class="card-body">
+
                     {% load mediapath %}
-                    <img src={% mediapath object.image %} />
-                    <rect width="1000%" height="100%" fill="#55595c"></rect>
+                    <img src="{% mediapath object.image %}"
+                    <rect width="70%" height="70%" fill="#55595c"></rect>
                     <text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
                     <p class="card-text">{{ object.name|title|truncatechars:100 }}</p>
                     <div class="d-flex justify-content-between align-items-center">
