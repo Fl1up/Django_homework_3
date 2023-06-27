@@ -5,5 +5,5 @@ register = template.Library()
 
 
 @register.simple_tag
-def mediapath(imag):
-    return f"{settings.MEDIA_URL}{imag}"
+def mediapath(image):
+    return f"{settings.MEDIA_URL}{image}"

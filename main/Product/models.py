@@ -21,7 +21,7 @@ class Category(models.Model):
 class Products(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название")
     description = models.TextField(max_length=100, verbose_name="Описание", **NULLABLE)
-    imag = models.ImageField(upload_to='media/', verbose_name="Фото", **NULLABLE)
+    image = models.ImageField(upload_to='media/', verbose_name="Фото", **NULLABLE)
     #category = models.CharField(max_length=100, verbose_name="Категория")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория")
     purchase_price = models.IntegerField(default=0, verbose_name="Цена за покупку")
@@ -29,7 +29,7 @@ class Products(models.Model):
     last_modified_date = models.DateField(default='2023-06-20', verbose_name="Дата последнего изменения")
 
     def __str__(self):
-        return f"{self.name} {self.description} {self.imag} {self.category} " \
+        return f"{self.name} {self.description} {self.image} {self.category} " \
                f"{self.purchase_price} {self.date_of_creation} {self.last_modified_date}"
 
     class Mata:
