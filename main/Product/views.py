@@ -13,16 +13,21 @@ def product(request):
 
 
 def contact(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        massage = request.POST.get("massage")
+        print(f"{name}\n{email}\n{massage}")
     context = {
         "title": "Контакты",
     }
     return render(request, "main/contact.html", context)
 
 
-def catalog(request):
-    product_list = Products.objects.all()
+def catalog(request,pk):
+    product_list = Products.objects.get(pk=pk)
     context = {
-        'product': product_list,
+        'product': Products.objects.filter(id=pk),
         "title": "Главная",
     }
     return render(request, "main/catalog.html", context)

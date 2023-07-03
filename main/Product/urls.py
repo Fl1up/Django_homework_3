@@ -11,6 +11,6 @@ app_name = ProductConfig.name
 urlpatterns = [
     path("", product, name='product'),
     path("contact/", contact, name='contact'),
-    path("catalog/", catalog, name='catalog'),
+    path("catalog/<int:pk>", catalog, name='catalog'),
 ]
 
