@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <h3 class="card-title">
+                        Блог
+                    </h3>
+                <div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <td>Название</td>
+                            <td>{{ blog.title|title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Содержимое</td>
+                            <td>{{ blog.body|title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Дата создания</td>
+                            <td>{{ blog.create_data|title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Количество просмотров</td>
+                            <td>{{ blog.count_views|title }}</td>
+                        </tr>
+                    </table>
+{% endblock %}

@@ -20,6 +20,14 @@ def product(request):
     }
     return render(request, "main/product.html", context)
 
+def catalog(request,pk):
+    product_list = Products.objects.get(pk=pk)
+    context = {
+        'product': Products.objects.filter(id=pk),
+        "title": "Главная",
+    }
+    return render(request, "main/catalog.html", context)
+
 
 def contact(request):
     if request.method == "POST":
@@ -33,11 +41,5 @@ def contact(request):
     return render(request, "main/contact.html", context)
 
 
-def catalog(request,pk):
-    product_list = Products.objects.get(pk=pk)
-    context = {
-        'product': Products.objects.filter(id=pk),
-        "title": "Главная",
-    }
-    return render(request, "main/catalog.html", context)
+
 
