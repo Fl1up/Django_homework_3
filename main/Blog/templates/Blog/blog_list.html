@@ -4,7 +4,7 @@
         <a class="btn btn-outline-primary" href="{% url 'Blog:create' %}">Добавить блог</a>
     </div>
     {% for object in object_list %}
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="card mb-4 box-shadow">
                 <div class="card-body">
                     {{ object|title }}
@@ -29,3 +29,4 @@
         </div>
     {% endfor %}
 {% endblock %}
+
