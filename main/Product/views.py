@@ -1,29 +1,53 @@
-
-from django.urls import reverse_lazy
+from django.template.defaultfilters import slugify
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
 from django.shortcuts import render
 from main.Product.models import Products
 
-#_____________________________________
-class ProductListView(ListView):
-    model = Products
-    template_name = "main/products_list.html"
-    context_object_name = "object_list"
-    extra_context = {"title": "Главная"}
-class ProductDetailView(DetailView):
-    model = Products
-    template_name = "main/products_detail.html"
 
 class ProductCreateView(CreateView):
     model = Products
     fields = ("name", "category")
     success_url = reverse_lazy("main:create_product")
 
+    def form_valid(self, form):
+        if form.is_valid():
+            new_mat = form.save()
+            new_mat.slug = slugify(new_mat.title)
+
+        return super().form_valid(form)
+
+
 class ProductUpdateView(UpdateView):
     model = Products
     fields = ("name", "category")
-    success_url = reverse_lazy("main:update_product")
+    #success_url = reverse_lazy("main:update_product")
+
+    def form_valid(self, form):
+        if form.is_valid():
+            new_mat = form.save()
+            new_mat.slug = slugify(new_mat.title)
+
+        return super().form_valid(form)
+
+
+class ProductListView(ListView):
+    model = Products
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(is_published=True)
+        return queryset
+
+
+class ProductDetailView(DetailView):
+    model = Products
+    template_name = "main/products_detail.html"
+
+
+class ProductDeleteView(DeleteView):
+    model = Products
+
 
 def contact(request):
     if request.method == "POST":
@@ -35,11 +59,6 @@ def contact(request):
         "title": "Контакты",
     }
     return render(request, "main/contact.html", context)
-
-class ProductDeleteView(DeleteView):
-    model = Products
-    success_url = reverse_lazy("main:product_list")
-
 
 
 
