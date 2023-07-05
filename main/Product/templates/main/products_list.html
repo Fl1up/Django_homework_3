@@ -15,14 +15,17 @@
                     <p class="card-text">{{ object.name|title|truncatechars:100 }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="button_two">
-                            <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                            <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill"><a
                                     href="{% url 'main:catalog' object.pk %}" class="text-black">Информация</a></button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary"><a
+
+                            <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill"><a
                                     href="{% url 'main:contact' %}" class="text-black">Заказать</a></button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary"><a
+
+                            <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill"><a
                                     href="{% url 'main:update' object.pk %}" class="text-black">Изменить</a></button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary"><a
-                                    href="{% url 'main:delete' object.pk %}" class="btn-danger">Удалить</a></button>
+
+                            <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill"><a
+                                    href="{% url 'main:delete' object.pk %}" class="btn-outline-danger">Удалить</a></button>
                         </div>
                     </div>
                 </div>
