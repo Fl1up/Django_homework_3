@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 {% block content %}
-    <div class="col">
+    <div class="col-10">
     {% for product in product %}
         <div class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
@@ -18,7 +18,5 @@
             </div>
         </div>
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="col-12 col-md">
-        </div>
     {% endfor %}
 {% endblock %}

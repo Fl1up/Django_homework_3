@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-6">
                 <div class="card">
-    <center
+                    <center
                     <h3 class="card-title">
                         Продукт
                     </h3>
@@ -24,8 +24,12 @@
                             <td>{{ blog.create_data|title }}</td>
                         </tr>
                         <tr>
-                            <td>Просмотров</td>
+                            <td>Просмотров : {{ object.views_count }}</td>
                             <td>{{ blog.count_views|title }}</td>
+                        </tr>
+                        <tr>
+                            <td>ссылка</td>
+                            <td>{{ object.slug }}</td>
                         </tr>
                     </table>
 {% endblock %}
