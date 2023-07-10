@@ -1,6 +1,7 @@
 from django.db import models
 # Create your models here.
 from django.db import models
+from django.urls import reverse
 
 NULLABLE = {"blank": True, "null": True}
 ABLE = {"blank": False, "null": False}
@@ -27,7 +28,11 @@ class Products(models.Model):
     purchase_price = models.IntegerField(default=0, verbose_name="Цена за покупку")
     date_of_creation = models.DateField(default='2023-06-20', verbose_name="Дата создания")
     last_modified_date = models.DateField(default='2023-06-20', verbose_name="Дата последнего изменения")
+    is_published = models.BooleanField(default=True)
+    views_count = models.IntegerField(default=0, verbose_name="Количество просмотров")
 
+    def get_absolute_url(self):
+        return reverse('product_detail', args=[str(self.id)])
     def __str__(self):
         return f"{self.name} {self.description} {self.image} {self.category} " \
                f"{self.purchase_price} {self.date_of_creation} {self.last_modified_date}"

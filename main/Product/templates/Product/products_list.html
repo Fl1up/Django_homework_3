@@ -1,7 +1,7 @@
-{% extends 'main/base.html' %}
+{% extends 'Product/base.html' %}
 {% block content %}
     <div class="col-12 mb-5">
-        <a class="btn btn-outline-primary" href="{% url "main:create" %}">Добавить продукт</a>
+        <a class="btn btn-outline-primary" href="{% url "Product:create" %}">Добавить продукт</a>
     </div>
     {% for object in product %}
         <div class="col-md-4">
@@ -22,21 +22,21 @@
                         <div class="button_two">
                             <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
                                 <a
-                                        href="{% url 'main:catalog' object.pk %}" class="text-black">Информация</a>
+                                        href="{% url 'Product:catalog' object.pk %}" class="text-black">Информация</a>
                             </button>
 
                             <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
                                 <a
-                                        href="{% url 'main:contact' %}" class="text-black">Заказать</a></button>
+                                        href="{% url 'Product:contact' %}" class="text-black">Заказать</a></button>
 
                             <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
                                 <a
-                                        href="{% url 'main:update' object.pk %}" class="text-black">Изменить</a>
+                                        href="{% url 'Product:update' object.pk %}" class="text-black">Изменить</a>
                             </button>
 
                             <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
                                 <a
-                                        href="{% url 'main:delete' object.pk %}" class="btn-outline-danger">Удалить</a>
+                                        href="{% url 'Product:delete' object.pk %}" class="btn-outline-danger">Удалить</a>
                             </button>
                         </div>
                     </div>

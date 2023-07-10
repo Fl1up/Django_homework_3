@@ -8,27 +8,30 @@ from main.Product.models import Products
 class ProductCreateView(CreateView):
     model = Products
     fields = ("name", "category")
-    success_url = reverse_lazy("main:create_product")
+    success_url = reverse_lazy("Product:create")
 
     def form_valid(self, form):
         if form.is_valid():
             new_mat = form.save()
-            new_mat.slug = slugify(new_mat.title)
+            new_mat.slug = slugify(new_mat.name)
 
         return super().form_valid(form)
 
 
 class ProductUpdateView(UpdateView):
     model = Products
-    fields = ("name", "category")
-    #success_url = reverse_lazy("main:update_product")
+    fields = ('name', "description")
+    #success_url = reverse_lazy('Blog:list')
 
     def form_valid(self, form):
         if form.is_valid():
             new_mat = form.save()
-            new_mat.slug = slugify(new_mat.title)
+            new_mat.slug = slugify(new_mat.name)
 
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("Product:update", args=[self.kwargs.get('pk')])
 
 
 class ProductListView(ListView):
@@ -42,12 +45,17 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Products
-    template_name = "main/products_detail.html"
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        self.object.views_count += 1
+        self.object.save()    # количество просмотров
+        return self.object
 
 
 class ProductDeleteView(DeleteView):
     model = Products
-
+    success_url = reverse_lazy("Product:list")
 
 def contact(request):
     if request.method == "POST":
@@ -58,9 +66,7 @@ def contact(request):
     context = {
         "title": "Контакты",
     }
-    return render(request, "main/contact.html", context)
-
-
+    return render(request, "Product/contact.html", context)
 
 
 
@@ -73,14 +79,13 @@ def product(request):
         'product': product_list,
         "title": "Главная",
     }
-    return render(request, "main/products_list.html", context)
-
+    return render(request, "Product/products_list.html", context)
 def catalog(request,pk):
     context = {
         'product': Products.objects.filter(id=pk),
         "title": "Главная",
     }
-    return render(request, "main/products_detail.html", context)
+    return render(request, "Product/products_detail.html", context)
 
 
 
