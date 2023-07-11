@@ -19,6 +19,8 @@ class Command(BaseCommand):
         Products.objects.create(name='баранина', description='', purchase_price='600', category=meet, image='/Баранина.png')
         Products.objects.create(name='курица', description='', purchase_price='350', category=meet, image='/Курица.png')
         Products.objects.create(name='килька', description='', purchase_price='700', category=fish, image='/Рыба.png')
+        Products.objects.create(name='черешня', description='', purchase_price='430', category=berry, image='/Черешня.png')
+        Products.objects.create(name='клубника', description='', purchase_price='380', category=berry, image='/Клубника.png')
 
 
 

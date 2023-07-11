@@ -20,7 +20,7 @@ class Category(models.Model):
 
 
 class Products(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Название")
+    name = models.CharField(max_length=100, verbose_name="Название", unique=True) # unique - уникальность
     description = models.TextField(max_length=100, verbose_name="Описание", **NULLABLE)
     image = models.ImageField(upload_to='media/', verbose_name="Фото", **NULLABLE)
     #category = models.CharField(max_length=100, verbose_name="Категория")
@@ -37,6 +37,28 @@ class Products(models.Model):
         return f"{self.name} {self.description} {self.image} {self.category} " \
                f"{self.purchase_price} {self.date_of_creation} {self.last_modified_date}"
 
-    class Mata:
+    class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
+
+class Version(models.Model):
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    version_number = models.CharField(max_length=50)
+    version_name = models.CharField(max_length=100)  # версия продукта
+    is_current = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.version_name
+
+class Subject(models.Model):
+    title = models.CharField(max_length=150, verbose_name="Название")
+    description = models.TextField(verbose_name="описание")
+
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name="продукты")
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "предмет"
+        verbose_name_plural = "предметы"

@@ -16,7 +16,7 @@
                             <ul class="d-flex list-unstyled mt-auto">
                                 <li class="me-auto">
                                     <img src="{% mediapath object.image %}" width="100%" height="170" alt="Иллюстрация"
-                                         class="rounded-circle border border-white" >
+                                         class="rounded-circle border border-white">
                                 </li>
                         </div>
                         <div class="button_two">
@@ -36,10 +36,17 @@
 
                             <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
                                 <a
-                                        href="{% url 'Product:delete' object.pk %}" class="btn-outline-danger">Удалить</a>
+                                        href="{% url 'Product:delete' object.pk %}"
+                                        class="btn-outline-danger">Удалить</a>
                             </button>
                         </div>
                     </div>
+                    <h2>{{ product.name }}</h2>
+                    {% if product.active_version %}
+                        <p>Активная версия: {{ product.active_version.version_name }}</p>
+                    {% else %}
+                        <p>Нет активной версии</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

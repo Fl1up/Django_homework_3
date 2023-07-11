@@ -20,6 +20,8 @@ class Command(BaseCommand):
         Blog.objects.create(title='баранина', body='', preview='/Баранина.png')
         Blog.objects.create(title='курица', body='', preview='/Курица.png')
         Blog.objects.create(title='килька', body='', preview='/Рыба.png')
+        Blog.objects.create(title='черешня', body='', preview='/Черешня.png')
+        Blog.objects.create(title='клубника', body='', preview='/Клубника.png')
 
 
 
