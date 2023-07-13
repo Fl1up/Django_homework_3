@@ -1,0 +1,180 @@
+[
+  {
+    "model": "Product.category",
+    "pk": 15,
+    "fields": {
+      "name": "фрукты",
+      "description": null
+    }
+  },
+  {
+    "model": "Product.category",
+    "pk": 16,
+    "fields": {
+      "name": "овощи",
+      "description": null
+    }
+  },
+  {
+    "model": "Product.category",
+    "pk": 17,
+    "fields": {
+      "name": "ягоды",
+      "description": null
+    }
+  },
+  {
+    "model": "Product.category",
+    "pk": 18,
+    "fields": {
+      "name": "мясо",
+      "description": null
+    }
+  },
+  {
+    "model": "Product.category",
+    "pk": 19,
+    "fields": {
+      "name": "рыба",
+      "description": null
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 36,
+    "fields": {
+      "name": "банан",
+      "description": "",
+      "image": "/Банан.png",
+      "category": 15,
+      "purchase_price": 146,
+      "date_of_creation": "2023-06-20",
+      "last_modified_date": "2023-06-20",
+      "is_published": true,
+      "views_count": 1
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 37,
+    "fields": {
+      "name": "помидор",
+      "description": "",
+      "image": "/Помидор.png",
+      "category": 16,
+      "purchase_price": 120,
+      "date_of_creation": "2023-06-20",
+      "last_modified_date": "2023-06-20",
+      "is_published": true,
+      "views_count": 0
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 38,
+    "fields": {
+      "name": "криптовалюта",
+      "description": "",
+      "image": "/Орех.png",
+      "category": 17,
+      "purchase_price": 250,
+      "date_of_creation": "2023-06-20",
+      "last_modified_date": "2023-06-20",
+      "is_published": true,
+      "views_count": 0
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 39,
+    "fields": {
+      "name": "казино",
+      "description": "",
+      "image": "/Баранина.png",
+      "category": 18,
+      "purchase_price": 600,
+      "date_of_creation": "2023-06-20",
+      "last_modified_date": "2023-06-20",
+      "is_published": true,
+      "views_count": 0
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 40,
+    "fields": {
+      "name": "курица",
+      "description": "",
+      "image": "/Курица.png",
+      "category": 18,
+      "purchase_price": 350,
+      "date_of_creation": "2023-06-20",
+      "last_modified_date": "2023-06-20",
+      "is_published": true,
+      "views_count": 0
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 41,
+    "fields": {
+      "name": "килька",
+      "description": "",
+      "image": "/Рыба.png",
+      "category": 19,
+      "purchase_price": 700,
+      "date_of_creation": "2023-06-20",
+      "last_modified_date": "2023-06-20",
+      "is_published": true,
+      "views_count": 0
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 42,
+    "fields": {
+      "name": "черешня",
+      "description": "",
+      "image": "/Черешня.png",
+      "category": 17,
+      "purchase_price": 430,
+      "date_of_creation": "2023-06-20",
+      "last_modified_date": "2023-06-20",
+      "is_published": true,
+      "views_count": 0
+    }
+  },
+  {
+    "model": "Product.products",
+    "pk": 43,
+    "fields": {
+      "name": "клубника",
+      "description": "",
+      "image": "/Клубника.png",
+      "category": 17,
+      "purchase_price": 380,
+      "date_of_creation": "2023-06-20",
+      "last_modified_date": "2023-06-20",
+      "is_published": true,
+      "views_count": 0
+    }
+  },
+  {
+    "model": "Product.subject",
+    "pk": 1,
+    "fields": {
+      "title": "глык",
+      "description": "глык",
+      "product": 37
+    }
+  },
+  {
+    "model": "Product.subject",
+    "pk": 2,
+    "fields": {
+      "title": "ыфвф",
+      "description": "фывфыв",
+      "product": 37
+    }
+  }
+]
