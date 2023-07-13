@@ -57,6 +57,7 @@ class ProductUpdateView(UpdateView):
 
 class ProductListView(ListView):
     model = Products
+    template_name = "Product/products_list.html"
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
@@ -66,6 +67,7 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Products
+    template_name = "Product/products_detail.html"
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)

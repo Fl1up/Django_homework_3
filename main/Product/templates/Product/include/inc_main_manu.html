@@ -28,7 +28,44 @@
                 </svg>
                 Контакты
             </a>
-
         </li>
+        {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'users:logout' %}" class="nav-link text-white">
+                    <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                        <use xlink:href="#grid"></use>
+                    </svg>
+                    Выйти
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'users:profile' %}" class="nav-link text-white">
+                    <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                        <use xlink:href="#grid"></use>
+                    </svg>
+                    Профиль
+                </a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url 'users:login' %}" class="nav-link text-white">
+                    <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                        <use xlink:href="#grid"></use>
+                    </svg>
+                    Войти
+                </a>
+            </li>
+            <li>
+            </li>
+            <li>
+                <a href="{% url 'users:register' %}" class="nav-link text-white">
+                    <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                        <use xlink:href="#grid"></use>
+                    </svg>
+                    Регистрация
+                </a>
+            </li>
+        {% endif %}
+
     </ul>
 </div>
