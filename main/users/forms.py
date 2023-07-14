@@ -7,9 +7,7 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("email",
-                  "password1",
-                  "password2")
+        fields = ("email", "password1", "password2")
 
 
 class UserProfileForm(UserChangeForm):
@@ -26,4 +24,4 @@ class UserProfileForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)  # скрывает поле пароля
 
-        self.fields['password'].widgeet = forms.HiddenInput
+        self.fields['password'].widget = forms.HiddenInput()

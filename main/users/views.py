@@ -15,9 +15,11 @@ class RegisterView(CreateView):
     success_url = reverse_lazy("users:login")
 
     def form_valid(self, form):
+        print(form.cleaned_data)
         response = super().form_valid(form)
-        user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
-        login(self.request, user)
+        user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password1'])  # регистрация
+        if user is not None:
+            login(self.request, user)
         return response
 
 
