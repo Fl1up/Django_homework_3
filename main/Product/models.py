@@ -33,6 +33,7 @@ class Products(models.Model):
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[str(self.id)])
+
     def __str__(self):
         return f"{self.name} {self.description} {self.image} {self.category} " \
                f"{self.purchase_price} {self.date_of_creation} {self.last_modified_date}"
@@ -40,6 +41,7 @@ class Products(models.Model):
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
+
 
 class Version(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
@@ -49,6 +51,7 @@ class Version(models.Model):
 
     def __str__(self):
         return self.version_name
+
 
 class Subject(models.Model):
     title = models.CharField(max_length=150, verbose_name="Название")

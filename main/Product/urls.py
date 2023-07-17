@@ -3,6 +3,7 @@ from main.Product.apps import ProductConfig
 from main.Product.views import contact, ProductListView, ProductUpdateView, ProductCreateView, \
     ProductDetailView, ProductDeleteView, product, catalog
 
+
 app_name = ProductConfig.name
 
 urlpatterns = [

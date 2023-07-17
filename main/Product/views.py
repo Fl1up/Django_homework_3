@@ -1,12 +1,16 @@
 from django.forms import inlineformset_factory
 from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.shortcuts import render
+from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
 
 from main.Product.forms import ProductForm, SubjectForm
 from main.Product.models import Products, Subject
 
+
+
+from django.shortcuts import render, redirect
+
+from main.users.models import UserVerification
 
 class ProductCreateView(CreateView):
     model = Products
@@ -19,7 +23,6 @@ class ProductCreateView(CreateView):
             new_mat.slug = slugify(new_mat.name)
 
         return super().form_valid(form)
-
 
 class ProductUpdateView(UpdateView):
     model = Products
@@ -80,6 +83,7 @@ class ProductDeleteView(DeleteView):
     model = Products  # Удаление
     success_url = reverse_lazy("Product:list")
 
+
 def contact(request):
     if request.method == "POST":
         name = request.POST.get("name")
@@ -108,16 +112,11 @@ def product(request):
     }
     return render(request, "Product/products_list.html", context)
 
+
 def catalog(request,pk):
     context = {
         'product': Products.objects.filter(id=pk),
         "title": "Главная",
     }
     return render(request, "Product/products_detail.html", context)
-
-
-
-
-
-
 

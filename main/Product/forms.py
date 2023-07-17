@@ -2,11 +2,13 @@ from django import forms
 
 from main.Product.models import Products, Subject
 
+
 class StyleFormMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():  # стилизация (нужно в каждый класс)
             field.widget.attrs['class'] = 'form-control'
+
 
 class ProductForm(StyleFormMixin, forms.ModelForm):
 
@@ -24,7 +26,8 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
 
         return name
 
-class SubjectForm( StyleFormMixin, forms.ModelForm):
+
+class SubjectForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Subject

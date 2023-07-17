@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
+
+
 from main.users.models import User
 
 
@@ -19,9 +21,14 @@ class UserProfileForm(UserChangeForm):
                   "last_name",
                   "phone",
                   "country",
-                  "avatar")
+                  "avatar",)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)  # скрывает поле пароля
 
         self.fields['password'].widget = forms.HiddenInput()
+
+
+class EmailVerificationForm(forms.Form):
+    email = forms.EmailField()
+

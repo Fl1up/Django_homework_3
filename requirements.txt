@@ -3,3 +3,4 @@ psycopg2-binary
 ipython
 pillow
 pytils
+django-smtp-email-backend
