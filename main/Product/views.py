@@ -88,8 +88,9 @@ class ProductDeleteView(UserPassesTestMixin, DeleteView, LoginRequiredMixin):
 @login_required  # уровень доступа к стр
 def product(request):
     product_list = Products.objects.all()
-    active_version = product.version_set.filter(is_current=True).first()
-    product.active_version = active_version  # вывод активной версии
+    for product in product_list:
+        active_version = product.version_set.filter(is_current=True).first()
+        product.active_version = active_version  # вывод активной версии
     context = {
         'product': product_list,
         "title": "Главная",
