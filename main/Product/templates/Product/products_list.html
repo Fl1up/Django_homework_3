@@ -2,9 +2,9 @@
 {% block content %}
     <div class="col-12 mb-5">
 
-        {% if perms.Product.add_product %}
+{#        {% if perms.Product.add_product %}#}
             <a class="btn btn-outline-primary" href="{% url "Product:create" %}">Добавить продукт</a>
-        {% endif %}
+{#        {% endif %}#}
 
     </div>
     {% for object in product %}
@@ -30,18 +30,18 @@
                             <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
                                 <a href="{% url 'Product:contact' %}" class="text-black">Заказать</a></button>
 
-                            {% if perms.Product.change_product %}
+{#                            {% if perms.Product.change_product %}#}
                                 <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
                                     <a href="{% url 'Product:update' object.pk %}" class="text-black">Изменить</a>
                                 </button>
-                            {% endif %}
+{#                            {% endif %}#}
 
-                            {% if user.is_superuser %}
+{#                            {% if user.is_superuser %}#}
                                 <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
                                     <a href="{% url 'Product:delete' object.pk %}"
                                        class="btn-outline-danger">Удалить</a>
                                 </button>
-                            {% endif %}
+{#                            {% endif %}#}
 
                         </div>
                     </div>
