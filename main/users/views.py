@@ -1,5 +1,7 @@
 import random
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordResetView
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
@@ -29,7 +31,7 @@ class PasswordResetCustomView(PasswordResetView):
     success_url = reverse_lazy('users:password_reset_done')
 
 
-class ProfileView(UpdateView):
+class  ProfileView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserProfileForm
     success_url = reverse_lazy("users:profile")

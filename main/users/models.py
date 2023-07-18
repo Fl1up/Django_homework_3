@@ -23,3 +23,4 @@ class UserVerification(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     verification_code = models.CharField(max_length=255)
     is_verified = models.BooleanField(default=False)
+

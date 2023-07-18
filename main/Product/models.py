@@ -11,6 +11,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название")
     description = models.TextField(max_length=100, verbose_name="Описание", **NULLABLE)
 
+
     def __str__(self):
         return f"{self.name} {self.description}"
 
@@ -23,13 +24,13 @@ class Products(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название", unique=True) # unique - уникальность
     description = models.TextField(max_length=100, verbose_name="Описание", **NULLABLE)
     image = models.ImageField(upload_to='media/', verbose_name="Фото", **NULLABLE)
-    #category = models.CharField(max_length=100, verbose_name="Категория")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория")
     purchase_price = models.IntegerField(default=0, verbose_name="Цена за покупку")
     date_of_creation = models.DateField(default='2023-06-20', verbose_name="Дата создания")
     last_modified_date = models.DateField(default='2023-06-20', verbose_name="Дата последнего изменения")
     is_published = models.BooleanField(default=True)
     views_count = models.IntegerField(default=0, verbose_name="Количество просмотров")
+
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[str(self.id)])
@@ -65,3 +66,4 @@ class Subject(models.Model):
     class Meta:
         verbose_name = "предмет"
         verbose_name_plural = "предметы"
+

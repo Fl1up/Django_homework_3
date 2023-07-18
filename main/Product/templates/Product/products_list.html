@@ -1,7 +1,11 @@
 {% extends 'Product/base.html' %}
 {% block content %}
     <div class="col-12 mb-5">
-        <a class="btn btn-outline-primary" href="{% url "Product:create" %}">Добавить продукт</a>
+
+        {% if perms.Product.add_product %}
+            <a class="btn btn-outline-primary" href="{% url "Product:create" %}">Добавить продукт</a>
+        {% endif %}
+
     </div>
     {% for object in product %}
         <div class="col-md-4">
@@ -21,31 +25,33 @@
                         </div>
                         <div class="button_two">
                             <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
-                                <a
-                                        href="{% url 'Product:catalog' object.pk %}" class="text-black">Информация</a>
+                                <a href="{% url 'Product:catalog' object.pk %}" class="text-black">Информация</a>
                             </button>
-
                             <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
-                                <a
-                                        href="{% url 'Product:contact' %}" class="text-black">Заказать</a></button>
+                                <a href="{% url 'Product:contact' %}" class="text-black">Заказать</a></button>
 
-                            <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
-                                <a
-                                        href="{% url 'Product:update' object.pk %}" class="text-black">Изменить</a>
-                            </button>
+                            {% if perms.Product.change_product %}
+                                <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
+                                    <a href="{% url 'Product:update' object.pk %}" class="text-black">Изменить</a>
+                                </button>
+                            {% endif %}
 
-                            <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
-                                <a
-                                        href="{% url 'Product:delete' object.pk %}"
-                                        class="btn-outline-danger">Удалить</a>
-                            </button>
+                            {% if user.is_superuser %}
+                                <button class="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">
+                                    <a href="{% url 'Product:delete' object.pk %}"
+                                       class="btn-outline-danger">Удалить</a>
+                                </button>
+                            {% endif %}
+
                         </div>
                     </div>
-                    <h2>{{ product.name }}</h2>
-                    {% if product.active_version %}
-                        <p>Активная версия: {{ product.active_version.version_name }}</p>
-                    {% else %}
-                        <p>Нет активной версии</p>
+                    {% if perms.Product.version %}
+                        <h2>{{ product.name }}</h2>
+                        {% if product.active_version %}
+                            <p>Активная версия: {{ product.active_version.version_name }}</p>
+                        {% else %}
+                            <p>Нет активной версии</p>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

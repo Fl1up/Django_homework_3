@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.forms import inlineformset_factory
 from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy, reverse
@@ -6,16 +8,16 @@ from django.views.generic import CreateView, UpdateView, ListView, DetailView, D
 from main.Product.forms import ProductForm, SubjectForm
 from main.Product.models import Products, Subject
 
-
-
 from django.shortcuts import render, redirect
 
 from main.users.models import UserVerification
 
-class ProductCreateView(CreateView):
+
+class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Products
     form_class = ProductForm
     success_url = reverse_lazy("Product:create")  # ПЕРЕХОД НА НУЖНУЮ СТРАНИЦУ
+    permission_required = "main.Product.add_product"
 
     def form_valid(self, form):
         if form.is_valid():
@@ -24,9 +26,11 @@ class ProductCreateView(CreateView):
 
         return super().form_valid(form)
 
-class ProductUpdateView(UpdateView):
+
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin,  UpdateView):
     model = Products
     fields = ("name", "image", "category")
+    permission_required = "main.Product.change_product"
     #success_url = reverse_lazy('Blog:list')
 
     def form_valid(self, form):
@@ -58,17 +62,10 @@ class ProductUpdateView(UpdateView):
             return super().form_valid(form)
 
 
-class ProductListView(ListView):
-    model = Products
-    template_name = "Product/products_list.html"
-
-    def get_queryset(self, *args, **kwargs):
-        queryset = super().get_queryset(*args, **kwargs)
-        queryset = queryset.filter(is_published=True)
-        return queryset
 
 
-class ProductDetailView(DetailView):
+
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Products
     template_name = "Product/products_detail.html"
 
@@ -79,11 +76,46 @@ class ProductDetailView(DetailView):
         return self.object
 
 
-class ProductDeleteView(DeleteView):
-    model = Products  # Удаление
+class ProductDeleteView(UserPassesTestMixin, DeleteView, LoginRequiredMixin):
+    model = Products
     success_url = reverse_lazy("Product:list")
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
+
+@permission_required('main.Product.change_product')
+@login_required  # уровень доступа к стр
+def product(request):
+    product_list = Products.objects.all()
+    active_version = product.version_set.filter(is_current=True).first()
+    product.active_version = active_version  # вывод активной версии
+    context = {
+        'product': product_list,
+        "title": "Главная",
+    }
+    return render(request, "Product/products_list.html", context)
+
+class ProductListView(LoginRequiredMixin, ListView):
+    model = Products
+    template_name = "Product/products_list.html"
+    permission_required = "Product.view_product"
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(is_published=True)
+        return queryset
+
+@login_required  # уровень доступа к стр
+def catalog(request, pk):
+    context = {
+        'product': Products.objects.filter(id=pk),
+        "title": "Главная",
+    }
+    return render(request, "Product/products_detail.html", context)
+
+
+@login_required  # уровень доступа к стр
 def contact(request):
     if request.method == "POST":
         name = request.POST.get("name")
@@ -94,29 +126,3 @@ def contact(request):
         "title": "Контакты",
     }
     return render(request, "Product/contact.html", context)
-
-
-
-
-
-
-def product(request):
-    product_list = Products.objects.all()
-    for product in product_list:
-        active_version = product.version_set.filter(is_current=True).first()
-        product.active_version = active_version  # вывод активной версии
-    context = {
-        'product': product_list,
-        "title": "Главная",
-        'products': product,
-    }
-    return render(request, "Product/products_list.html", context)
-
-
-def catalog(request,pk):
-    context = {
-        'product': Products.objects.filter(id=pk),
-        "title": "Главная",
-    }
-    return render(request, "Product/products_detail.html", context)
-
