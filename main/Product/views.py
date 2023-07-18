@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.forms import inlineformset_factory
+from django.http import Http404
 from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
@@ -33,6 +34,12 @@ class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin,  UpdateView
     permission_required = "main.Product.change_product"
     #success_url = reverse_lazy('Blog:list')
 
+    # def get_object(self, queryset=None):
+    #     self.object = super().get_object(queryset)
+    #     self.object.owner != self.request.user:
+    #     raise Http404
+    #     return self.object
+    #
     def form_valid(self, form):
         if form.is_valid():
             new_mat = form.save()
@@ -61,10 +68,6 @@ class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin,  UpdateView
 
             return super().form_valid(form)
 
-
-
-
-
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Products
     template_name = "Product/products_detail.html"
@@ -84,8 +87,8 @@ class ProductDeleteView(UserPassesTestMixin, DeleteView, LoginRequiredMixin):
         return self.request.user.is_superuser
 
 
-@permission_required('main.Product.change_product')
-@login_required  # уровень доступа к стр
+# @permission_required('main.Product.change_product')
+# @login_required  # уровень доступа к стр
 def product(request):
     product_list = Products.objects.all()
     for product in product_list:
@@ -107,7 +110,7 @@ class ProductListView(LoginRequiredMixin, ListView):
         queryset = queryset.filter(is_published=True)
         return queryset
 
-@login_required  # уровень доступа к стр
+# @login_required  # уровень доступа к стр
 def catalog(request, pk):
     context = {
         'product': Products.objects.filter(id=pk),
@@ -116,7 +119,7 @@ def catalog(request, pk):
     return render(request, "Product/products_detail.html", context)
 
 
-@login_required  # уровень доступа к стр
+# @login_required  # уровень доступа к стр
 def contact(request):
     if request.method == "POST":
         name = request.POST.get("name")

@@ -3,6 +3,8 @@ from django.db import models
 from django.db import models
 from django.urls import reverse
 
+from main import users
+
 NULLABLE = {"blank": True, "null": True}
 ABLE = {"blank": False, "null": False}
 
@@ -30,7 +32,6 @@ class Products(models.Model):
     last_modified_date = models.DateField(default='2023-06-20', verbose_name="Дата последнего изменения")
     is_published = models.BooleanField(default=True)
     views_count = models.IntegerField(default=0, verbose_name="Количество просмотров")
-
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[str(self.id)])
